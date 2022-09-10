@@ -1,15 +1,15 @@
 <template>
   <div id="app">
-    <SideBar></SideBar>
+    <side-bar></side-bar>
     <main>
-      <Gallery></Gallery>
+      <DisplaySection></DisplaySection>
       <NavBar></NavBar>
     </main>
   </div>
 </template>
 
 <script>
-import Gallery from './components/Gallery.vue'
+import DisplaySection from './components/DisplaySection.vue'
 import SideBar from './components/SideBar.vue'
 import NavBar from './components/NavBar.vue'
 
@@ -18,7 +18,7 @@ export default {
   components: {
     NavBar,
     SideBar,
-    Gallery
+    DisplaySection
   }
 }
 </script>
