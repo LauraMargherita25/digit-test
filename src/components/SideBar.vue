@@ -1,7 +1,9 @@
 <template>
     <div class="container">
         <ul>
-            <li v-for="btn_title in btn_titles" :key="btn_title">{{ btn_title }}</li>
+            <li v-for="btn in btns" :key="btn.name" @click="select">
+                <button >{{ btn.name }}</button>
+            </li>
         </ul>
     </div>
 </template>
@@ -11,9 +13,27 @@ export default {
 name: 'side-bar',
 data() {
     return {
-      btn_titles: ['Image 1', 'Image 2', 'Image3'],
+      btns: [
+        {
+            name:'Image 1', 
+            selected: false
+        }, 
+        {
+            name:'Image 2', 
+            selected: false
+        }, 
+        {
+            name:'Image 3', 
+            selected: false
+        }
+        ],
     }
-  }
+  },
+methods:{
+    select(){   
+         
+    }
+}
 }
 </script>
 
@@ -25,7 +45,7 @@ data() {
     display: flex;
     align-items: center;
     justify-content: center;
-    li{
+    button{
         background-color: white;
         margin-bottom: 1rem;
         padding: 1rem;

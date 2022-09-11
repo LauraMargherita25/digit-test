@@ -2,41 +2,55 @@
   <div id="app">
     <side-bar></side-bar>
     <main>
-      <DisplaySection ></DisplaySection>
-      <NavBar></NavBar>
+      <DisplaySection :selectedPhoto="selectedPhoto" :photos="photos"></DisplaySection>
+      <PhotoGallery :photos="photos" @select="selectPhoto"></PhotoGallery>
     </main>
   </div>
 </template>
 
 <script>
-// import axios from "axios"
+import axios from "axios"
 import DisplaySection from './components/DisplaySection.vue'
 import SideBar from './components/SideBar.vue'
-import NavBar from './components/NavBar.vue'
+import PhotoGallery from './components/PhotoGallery.vue'
 
 export default {
   name: 'App',
   components: {
-    NavBar,
+    PhotoGallery,
     SideBar,
     DisplaySection
   },
 
-  // data() {
-  //   return {
-  //     apiUrl: 'https://api.pexels.com/v1/search?query=nature&per_page=3',
-  //     apiKey: '563492ad6f91700001000001777e61cd1d234a07b2d8199d3c161487',
-  //     arrImgs: [],
-  //   }
-  // },
+  data() {
+    return {
+      apiUrl: 'https://api.pexels.com/v1/search?query=nature&per_page=3',
+      apiKey: '563492ad6f91700001000001777e61cd1d234a07b2d8199d3c161487',
+      photos: [],
+      selectedPhoto: null
+    }
+  },
   
-  // mounted() {
-  //   axios.get(this.apiUrl, {headers: {'Authorization': this.apiKey}})
-  //   .then(response => {
-  //     console.log(response);
-  //     // this.arrImgs = response.data.results;
-  //   })
-  // }
+  mounted() {
+    axios.get(this.apiUrl, {headers: {'Authorization': this.apiKey}})
+    .then(response => {
+      console.log(response.data.photos);
+      this.photos = response.data.photos.map((photo) => ({
+        src: photo.src.tiny,
+        alt: photo.alt,
+        photographer: photo.photographer,
+        photographerUrl: photo.photographer_url,
+        selected: false
+      })
+      );
+    })
+  },
+
+  methods: {
+    selectPhoto(photo){
+      this.selectedPhoto = photo
+    }
+  }
 }
 </script>
 
