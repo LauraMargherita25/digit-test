@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="img_container" v-for="photo in photos" :key="photo.alt">
-      <img :src="photo.src" :alt="photo.alt">
+      <img :src="photo.srcThumbnail" :alt="photo.alt">
     </div>
   </div>
 </template>
@@ -17,18 +17,15 @@ export default {
 
 <style lang="scss" scoped>
 .container{
-  height: 20%;
-  background-color: blueviolet;
+  
+  background-color: rgb(200, 224, 245);
   padding: 2rem;
   display: flex;
+  flex-wrap: nowrap;
   justify-content: space-evenly;
   .img_container{
-    background-color: white;
-    width: 200px;
-    height: 100%;
-    img{
-      width: 100%;
-    }
+    width: 280px;
+    height: 200px;
   }
 }
 </style>

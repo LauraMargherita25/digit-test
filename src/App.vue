@@ -35,7 +35,8 @@ export default {
     axios.get(this.apiUrl, {headers: {'Authorization': this.apiKey}})
     .then(response => {
       this.photos = response.data.photos.map((photo) => ({
-        src: photo.src.tiny,
+        srcThumbnail: photo.src.tiny,
+        src: photo.src.landscape,
         alt: photo.alt,
         photographer: photo.photographer,
         photographerUrl: photo.photographer_url,
@@ -61,8 +62,8 @@ export default {
 @import "./assets/style.scss";
 
 #app {
+  font-family: 'Courier New', Courier, monospace;
   height: 100vh;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   display: flex;
   main{
     width: 80%;

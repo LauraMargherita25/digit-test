@@ -28,13 +28,14 @@ data() {
 .container{
     width: 20%;
     height: 100%;
-    background-color: red;
+    background-color: rgb(126, 190, 247);
     display: flex;
     align-items: center;
     justify-content: center;
     li{
         background-color: white;
         margin-bottom: 1rem;
+        border-radius: 100rem;
         padding: 1rem;
         font-size: 20px;
         cursor: pointer;
