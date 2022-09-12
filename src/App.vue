@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <side-bar></side-bar>
+    <side-bar @btnIndex="selectPhoto"></side-bar>
     <main>
-      <DisplaySection :selectedPhoto="selectedPhoto" :photos="photos"></DisplaySection>
-      <PhotoGallery :photos="photos" @select="selectPhoto"></PhotoGallery>
+      <DisplaySection :photos="photos" :selectedPhoto="selectedPhoto"></DisplaySection>
+      <PhotoGallery :photos="photos"></PhotoGallery>
     </main>
   </div>
 </template>
@@ -34,21 +34,23 @@ export default {
   mounted() {
     axios.get(this.apiUrl, {headers: {'Authorization': this.apiKey}})
     .then(response => {
-      console.log(response.data.photos);
       this.photos = response.data.photos.map((photo) => ({
         src: photo.src.tiny,
         alt: photo.alt,
         photographer: photo.photographer,
         photographerUrl: photo.photographer_url,
-        selected: false
       })
       );
     })
   },
 
   methods: {
-    selectPhoto(photo){
-      this.selectedPhoto = photo
+    selectPhoto(index){
+      let i = 0;
+      while (i != index) {
+        i++;
+      }
+      this.selectedPhoto = this.photos[index];
     }
   }
 }

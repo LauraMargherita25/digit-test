@@ -2,7 +2,6 @@
   <div class="container">
     <div class="img_container" v-for="photo in photos" :key="photo.alt">
       <img :src="photo.src" :alt="photo.alt">
-      <button @click="$emit('select', photo)">Show Me</button>
     </div>
   </div>
 </template>

@@ -1,8 +1,8 @@
 <template>
     <div class="container">
         <ul>
-            <li v-for="btn in btns" :key="btn.name" @click="select">
-                <button >{{ btn.name }}</button>
+            <li v-for="btn in arrBtn" :key="btn" @click="$emit('btnIndex', getIndexBtn(btn))">
+                {{ btn }}
             </li>
         </ul>
     </div>
@@ -13,27 +13,14 @@ export default {
 name: 'side-bar',
 data() {
     return {
-      btns: [
-        {
-            name:'Image 1', 
-            selected: false
-        }, 
-        {
-            name:'Image 2', 
-            selected: false
-        }, 
-        {
-            name:'Image 3', 
-            selected: false
-        }
-        ],
+      arrBtn: ['Image 1', 'Image 2', 'Image 3',]  
     }
   },
-methods:{
-    select(){   
-         
+  methods: {
+    getIndexBtn(btn){
+        return this.arrBtn.indexOf(btn)
     }
-}
+  }
 }
 </script>
 
@@ -45,11 +32,12 @@ methods:{
     display: flex;
     align-items: center;
     justify-content: center;
-    button{
+    li{
         background-color: white;
         margin-bottom: 1rem;
         padding: 1rem;
         font-size: 20px;
+        cursor: pointer;
     }
 }
 </style>
